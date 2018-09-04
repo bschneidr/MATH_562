@@ -1,0 +1,124 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb,latexsym,amsthm}
+\usepackage[margin=1in,dvips]{geometry}
+
+
+\begin{document}
+\title{Math 562 Class Notes}
+\author{Ben Schneider}
+\date{}
+\maketitle
+
+${}$\\
+Note: Since this class is not following the book, the notes shall follow a daily routine.\\\\
+\\
+{\bf Example 1}:
+\\
+$$ X \sim Exp(\theta)$$
+$$f(x) = \frac{1}{\theta} e^{-\frac{x}{\theta}}\text{,    }x > 0$$
+$$Y = \ln{X}$$
+
+Want to find the pdf of $Y$.\\
+
+Start by identifying the domain:\\
+
+$$Dom(Y) = (-\infty, \infty)$$
+$$\ln{(x)} \in (-\infty, \infty)\text{, $\forall x > 0$}$$
+
+Then for any $y \in (-\infty, \infty)$:\\
+$$P[Y \leq y] = P[\ln{(X)} \leq y]$$
+$$= P[X \leq e^{y}]$$
+
+
+{\bf 8 January}: Syllabus and ``Warm-Up'' Quiz\\
+\\
+{\bf 10 January}\\
+Recall: Cantor's Intersection Property\\
+Given a descending sequence of nonempty sets $E_1\supset E_2\supset E_3\supset\ldots$, when is $\cap_{n=1}^\infty E_n\neq\emptyset$?\\
+If $E_n=(0,\frac1n)$, $\forall n\in\mathbb{N}$, then $\cap_{n=1}^\infty E_n=\emptyset$. Note that each $E_n$ is bounded, but not closed.\\
+If $E_n=[n,\infty)$, $\forall n\in\mathbb{N}$, then $\cap_{n=1}^\infty E_n=\emptyset$. Note that each $E_n$ is closed, but not bounded.\\
+\\
+{\bf Theorem} (Cantor): Let $E_1\supset E_2\supset E_3\supset\ldots$ be a descending sequence of nonempty closed and bounded (compact) subsets of $\mathbb{R}$.\\
+Then $E=\cap_{n=1}^\infty E_n$ is also closed and bounded (compact).\\
+\\
+{\bf Corollary} (Cantor's Intersection Theorem)\\
+Define the diameter of a set by $diam(E_n)=\max(E_n)-\min(E_n)$.\\
+Let $E_1\supset E_2\supset\ldots$ be a descending sequence of nonempty compact subsets of $\mathbb{R}$ such that $diam(E_n)\rightarrow0$. Then $E=\cap_{n=1}^\infty E_n$ consists of a single point.\\
+\\
+{\bf CHAPTER 8: THE INTEGRAL}\\
+This part of the course is a combination of sections 8.6 (Riemann Integral) and 8.2 (Cauchy's First Method), plus extra material.\\
+\\
+\underline{\bf The Darboux Integral}\\
+\\
+{\bf Definition:} Let $f:[a,b]\rightarrow\mathbb{R}$ be a bounded function. (The image of $f$ is bounded.)\\
+For a nonempty set $S\subset[a,b]$, we denote {\bf the maximum of $f$ over $S$} by $M(f,S)$ and {\bf the minimum of $f$ over $S$} by $m(f,S)$.\\
+$$M(f,S)=\sup\{f(x):x\in S\}$$
+$$m(f,S)=\inf\{f(x):x\in S\}$$
+A {\bf partition} of $[a,b]$ is any finite ordered subset $P$ having the form
+$$P=\{a=x_0<x_1<\ldots<x_n=b\}$$
+not necessarily having equal width.\\
+\\
+The {\bf upper Darboux sum} $U(f,P)$ of $f$ with respect to $P$ is the sum
+$$U(f,P)=\sum_{k=1}^n M(f,[x_{k-1},x_k])(x_k-x_{k-1})$$
+The {\bf lower Darboux sum} $L(f,P)$ of $f$ with respect to $P$ is the sum
+$$L(f,P)=\sum_{k=1}^n m(f,[x_{k-1},x_k])(x_k-x_{k-1})$$
+Remarks: (i) If $f$ is continuous on $[a,b]$, then $m(f,[x_{k-1},x_k])=\min\{f(x):x\in[x_{k-1},x_k]\}$ and $M(f,[x_{k-1},x_k])=\max\{f(x):x\in[x_{k-1},x_k]\}$.\\
+(ii) Note that $U(f,P)\leq\sum_{k=1}^n M(f,[a,b])(x_k-x_{k-1})=M(f,[a,b])(b-a)$ and $L(f,P)\geq\sum_{k=1}^n m(f,[a,b])(x_k-x_{k-1})=m(f,[a,b])(b-a)$.\\
+\begin{equation}
+m(f,[a,b])(b-a)\leq L(f,P)\leq U(f,P)\leq M(f,[a,b])(b-a)
+\end{equation}
+\\
+{\bf Definition} (Not in book): The {\bf upper Darboux integral} $U(f)$ of $f$ over $[a,b]$ is defined by
+$$U(f)=\inf\{U(f,P): P\text{ is a partition of }[a,b]\}$$
+and the {\bf lower Darboux integral} $L(f)$ of $f$ over $[a,b]$ is defined by
+$$L(f)=\sup\{L(f,P): P\text{ is a partition of }[a,b]\}.$$
+\\
+{\bf 12 January}: Snow Day\\
+\\
+{\bf 15 January}: Martin Luther King, Jr. Holiday\\
+\\
+{\bf 17 January}\\
+HW: $8.2:{}\#2,3,4,5,14,17a-d$\\
+\\
+{\bf Definition}: We say that $f$ is {\bf Darboux integrable on $[a,b]$} if $U(f)=L(f)$.\\
+\\
+Example: $[a,b]=[0,1]$. $P=\{0<\frac1n<\frac2n<\ldots<\frac{n-1}n<1\}$. $U(f)$ is always larger than or equal to $f$, so it is the sum of the infima of our partitioned intervals. Similarly, $L(f)$ is always less than or equal to $f$, so it is the sum of the suprema of our partitioned intervals.\\
+\\
+Example: Consider $f:[0,b]\rightarrow\mathbb{R}$, $b>0$, defined by $f(x)=x^2$.\\
+Let $P=\{0=x_0<x_1<x_2<\ldots<x_n=b\}$.
+$$U(f,P)=\sum_{k=1}^n M(f,[x_{k-1},x_k])(x_k-x_{k-1})=\sum_{k=1}^n {x_k}^2(x_k-x_{k-1})$$
+Suppose $P=\{0<\frac{b}n<\frac{2b}n<\ldots<\frac{nb}n=b\}$. So $x_k=\frac{kb}n$ and $x_k-x_{k-1}=\frac{b}n$. Now
+$$U(f,P)=\sum_{k=1}^n \frac{k^2b^2}{n^2}\cdot\frac{b}n=\frac{b^3}{n^3}\sum_{k=1}^n k^2=\frac{b^3}{n^3}\frac{n(n+1)(2n+1)}{6}\rightarrow\frac13b^3$$
+So $U(f)\leq\frac{b^3}3$. Similarly,
+$$L(f,P)=\sum_{k=1}^n {x_{k-1}}^2(x_k-x_{k-1})=\sum_{k=1}^n\frac{(k-1)^2b^2}{n^2}\frac{b}n=\frac{b^3}{n^3}\sum_{k=1}^n(k-1)^2=\frac{b^3}{n^3}\frac{n(n-1)(2n-1)}6\rightarrow\frac13b^3$$
+So $L(f)\geq\frac{b^3}3$. Since $\frac{b^3}3\leq L(f)\leq U(f)\leq\frac{b^3}3$, $f(x)=x^2$ is Darboux integrable and $\int_0^b x^2dx=\frac{b^3}3$.\\
+\\
+Example: Let $f:[0,b]\rightarrow\mathbb{R}$ be defined by $f(x)=\begin{cases}1,x\in\mathbb{Q}\cap[0,b]\\0,x\in\mathbb{I}\cap[0,b]\\ \end{cases}$ for any partition $P=\{0=x_0<x_1<\ldots<x_n=b\}$.\\
+$U(f,P)=\sum_{k=1}^n 1\cdot(x_k-x_{k-1})=b$, since $\sup\{f(x):x\in[x_{k-1},x_k]\}=1$. Hence $U(f)=1$.\\
+$L(f,P)=\sum_{k=1}^n 0\cdot(x_k-x_{k-1})=0$, since $\inf\{f(x):x\in[x_{k-1},x_k]\}=0$. Hence $L(f)=0$.\\
+Since $L(f)\neq U(f)$, $f$ is not Darboux integrable.\\
+\\
+{\bf Lemma 1}: Let $f:[a,b]\rightarrow\mathbb{R}$ be bounded. If $P$ and $Q$ are partitions of $[a,b]$ and $P\subset Q$, then
+\begin{equation}
+L(f,P)\leq L(f,Q)\leq U(f,Q)\leq U(f,P)
+\end{equation}
+{\bf Lemma 2}: If $f:[a,b]\rightarrow\mathbb{R}$ is bounded and $P$ and $Q$ are partitions of $[a,b]$, then $L(f,P)\leq U(f,Q)$.\\
+\\
+{\bf Theorem 1}: If $f:[a,b]\rightarrow\mathbb{R}$ is bounded, then $L(f)\leq U(f)$.
+\begin{proof}
+Fix a partition $P$ of $[a,b]$.\\
+By Lemma 2, $L(f,P)$ is a lower bound of $\{U(f,Q):Q\text{ is any partition of }[a,b]\}$.\\
+Thus, $L(f,P)\leq U(f)$.\\
+Similarly, $U(f)$ is an upper bound of $\{L(f,P):P\text{ is any partition of }[a,b]\}$.\\
+Hence, $L(f)\leq U(f)$.
+\end{proof}
+
+${}$\\
+
+\end{document}
+
+
+
+
+
+
